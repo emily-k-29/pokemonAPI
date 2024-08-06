@@ -1,8 +1,6 @@
 import { memo, useEffect, useState, Fragment } from "react";
 
 import ImageContainer from "../UI/ImageContainer";
-import NameContainer from "../UI/NameContainer";
-import PokemonName from "./PokemonName";
 import PokemonImage from "./PokemonImage";
 import PokemonInfo from "./PokemonInfo";
 
