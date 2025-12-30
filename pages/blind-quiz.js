@@ -98,7 +98,7 @@ const BlindQuiz = ({ initialPokemon }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const randomPokemon = pokemonAll[Math.trunc(Math.random() * pokemonLength)].toLowerCase();
 
   try {
