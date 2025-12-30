@@ -50,10 +50,10 @@ const BlindQuiz = () => {
             )}
           </div>
           {btnText === "Get Answer!" || (btnText === "Next" && isFetching) ? (
-            <p>Who's that pokemon?</p>
+            <p>Who&apos;s that pokemon?</p>
           ) : (
             <p>
-              It's{" "}
+              It&apos;s{" "}
               <span>
                 {pokemonData[0].name[0].toUpperCase() +
                   pokemonData[0].name.slice(1)}

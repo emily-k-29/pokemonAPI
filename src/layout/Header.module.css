@@ -51,7 +51,11 @@
   color: yellow;
 }
 
-a {
+.nav ul li.active {
+  color: yellow;
+}
+
+.link {
   text-decoration: none;
 }
 

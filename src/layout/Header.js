@@ -1,23 +1,35 @@
-import { NavLink } from "react-router-dom";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 import pikachu from "./../assets/pikachu_icon-icons.com_67535.png";
 
 import classes from "./Header.module.css";
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <div className={classes.header}>
-      <NavLink to="/" className={classes["logo--container"]}>
+      <Link href="/" className={classes["logo--container"]}>
         <h1 className={classes.logo}>Pokémon</h1>
-        <img className={classes.pikachu} src={pikachu} alt="pikachu" />
-      </NavLink>
-      <NavLink to="/blind-quiz">
+        <Image 
+          src={pikachu} 
+          alt="pikachu" 
+          className={classes.pikachu}
+          width={60}
+          height={60}
+        />
+      </Link>
+      <Link href="/blind-quiz" className={classes.link}>
         <nav className={classes.nav}>
           <ul>
-            <li>Blind Quiz</li>
+            <li className={router.pathname === '/blind-quiz' ? classes.active : ''}>
+              Blind Quiz
+            </li>
           </ul>
         </nav>
-      </NavLink>
+      </Link>
     </div>
   );
 };

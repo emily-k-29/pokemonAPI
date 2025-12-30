@@ -90,7 +90,7 @@
   font-size: 1.3rem;
 }
 
-li span:last-child {
+.info--list li span:last-child {
   align-self: start;
 }
 
@@ -121,11 +121,11 @@ li span:last-child {
   height: 50%;
 }
 
-li>span:first-child {
+.info--list li>span:first-child {
   color: #fff;
 }
 
-li>span:last-child {
+.info--list li>span:last-child {
   font-size: 1rem;
 }
 
@@ -181,7 +181,7 @@ li>span:last-child {
     height: 25px;
   }
 
-  li>span:last-child {
+  .info--list li>span:last-child {
     font-size: 1.2rem;
   }
 
