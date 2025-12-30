@@ -10,7 +10,8 @@
     "pokemon": "^2.3.0",
     "randomcolor": "^0.6.2",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
