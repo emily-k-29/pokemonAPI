@@ -7,7 +7,7 @@ const nextConfig = {
   },
   output: 'export', // Enable static export
   trailingSlash: true, // Required for static export
-  distDir: 'build', // Change output directory to 'build'
+  distDir: 'out', // Change output directory to 'out'
 }
 
 module.exports = nextConfig

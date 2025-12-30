@@ -5,9 +5,9 @@ import classes from "../src/pages/BlindQuiz.module.css";
 const pokemonAll = pokemon.all();
 const pokemonLength = pokemonAll.length;
 
-const BlindQuiz = ({ initialPokemon }) => {
+const BlindQuiz = () => {
   const [isFetching, setIsFetching] = useState(false);
-  const [pokemonData, setPokemonData] = useState(initialPokemon ? [initialPokemon] : []);
+  const [pokemonData, setPokemonData] = useState([]);
   const [btnText, setBtnText] = useState("Get Answer!");
 
   const fetchRandomPokemon = useCallback(async () => {
@@ -45,6 +45,20 @@ const BlindQuiz = ({ initialPokemon }) => {
       setBtnText("Get Answer!");
     }
   };
+
+  // Load initial pokemon on component mount
+  useEffect(() => {
+    const loadInitialPokemon = async () => {
+      setIsFetching(true);
+      const initialPokemon = await fetchRandomPokemon();
+      setPokemonData([initialPokemon]);
+      setIsFetching(false);
+    };
+
+    if (pokemonData.length === 0) {
+      loadInitialPokemon();
+    }
+  }, [fetchRandomPokemon, pokemonData.length]);
 
   useEffect(() => {
     const loadMorePokemon = async () => {
@@ -97,41 +111,5 @@ const BlindQuiz = ({ initialPokemon }) => {
     </div>
   );
 };
-
-export async function getStaticProps() {
-  const randomPokemon = pokemonAll[Math.trunc(Math.random() * pokemonLength)].toLowerCase();
-
-  try {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`);
-    const data = await res.json();
-    let imgUrl = data.sprites.other["official-artwork"]["front_default"];
-    
-    // If no image, try a few more times
-    let attempts = 0;
-    while (!imgUrl && attempts < 5) {
-      const newRandomPokemon = pokemonAll[Math.trunc(Math.random() * pokemonLength)].toLowerCase();
-      const newRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${newRandomPokemon}/`);
-      const newData = await newRes.json();
-      imgUrl = newData.sprites.other["official-artwork"]["front_default"];
-      attempts++;
-    }
-
-    return {
-      props: {
-        initialPokemon: {
-          name: randomPokemon,
-          imgUrl: imgUrl || '/placeholder-pokemon.png', // fallback
-        },
-      },
-    };
-  } catch (error) {
-    console.error('Error in getServerSideProps:', error);
-    return {
-      props: {
-        initialPokemon: null,
-      },
-    };
-  }
-}
 
 export default BlindQuiz;
